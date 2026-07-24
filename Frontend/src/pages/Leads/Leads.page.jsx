@@ -4,11 +4,16 @@ import { LeadsTable } from "../../components/Table/LeadsTable.component.jsx";
 import { AddLeads } from "../AddLeads/AddLeads.page.jsx";
 import { useGetLeadsQuery } from "../../features/API/api.js";
 import styles from "../Leads/Leads.page.module.css";
+import { EditLeads } from "../LeadsOperation/EditLeads.page.jsx";
+import { useNavigate } from "react-router-dom";
 
 export const Leads = () => {
   const [page, setPage] = useState(1);
   const limit = 11;
   const [isOpen, setOpen] = useState(false);
+ const navigate = useNavigate();
+  const [activeModal, setActiveModal] = useState(null)
+  const [editLead, setEditLead] = useState(null)
   const { data: leadsData, isLoading } = useGetLeadsQuery({ page, limit });
   console.log(leadsData);
 
@@ -20,18 +25,33 @@ export const Leads = () => {
     setPage((prev) => prev + 1);
   }
 
-  function handleModal() {
-    if (isOpen) {
+  function handleEditModal(lead) {
+      if (isOpen) {
       setOpen(false);
+      setActiveModal(null)
       navigate("/leads");
     } else {
       setOpen(true);
+      setEditLead(lead)
+      setActiveModal("edit")
+      navigate("/leads/editLead");
+    }
+  }
+
+  function handleModal() {
+    if (isOpen) {
+      setOpen(false);
+      setActiveModal(null)
+      navigate("/leads");
+    } else {
+      setOpen(true);
+      setActiveModal("add")
       navigate("/leads/addLead");
     }
   }
 
   function handleClose() {
-    setOpen(false);
+    setActiveModal(false);
     navigate("/leads");
   }
   return (
@@ -68,10 +88,13 @@ export const Leads = () => {
             page={page}
             pageSelectionLeft={handlePageSelectionLeft}
             pageSelectionRight={handlePageSelectionRight}
+            handleEditModal={handleEditModal}
           />
         </div>
       </section>
-      <AddLeads isOpen={isOpen} onClose={handleClose} />
+      <AddLeads isOpen={activeModal==="add"} onClose={handleClose}  />
+      {editLead && ( <EditLeads isOpen={activeModal==="edit"} onClose={handleClose} data={editLead}/>)}
+     
     </>
   );
 };

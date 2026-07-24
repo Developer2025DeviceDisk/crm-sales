@@ -109,7 +109,7 @@ const editLead = async (req, res) => {
     ]);
 
     if (!employee) {
-      throw new APIError(404, "Employee not found");
+      throw new APIError(404, "Employees not found");
     }
 
     const accessibleUsers = [
@@ -128,7 +128,6 @@ const editLead = async (req, res) => {
 
     findLead.clientName = clientName;
     findLead.status = status;
-    findLead.source = source;
     findLead.source = source;
     findLead.email = email;
     findLead.phoneNumber = phoneNumber;

@@ -82,13 +82,12 @@ function App() {
 
         {
           path: "leads",
-          element: <Leads />,
+          children: [
+            {path: "", element:<Leads />},
+            {path: "addLead", element:<Leads/>},
+            {path: "editLead", element: <Leads/>}
+          ]         
         },
-        {
-          path: "leads/addLead",
-          element: <Leads />,
-        },
-
         {
           path: "team",
           element: <Team />,

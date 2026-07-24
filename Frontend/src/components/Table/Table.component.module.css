@@ -1,6 +1,14 @@
 .tableTabs {
   background-color: var(--surface);
+  
   padding: 0.875rem 1.5rem;
+}
+.tableTabs td {
+  border-bottom: 0.25rem solid white;
+}
+
+.tableTabs:hover td{
+  background-color: var(--hover-color);
 }
 
 .pagination{
@@ -11,3 +19,18 @@
   padding: 0.875rem 1.5rem;
   padding-bottom: 0;
 }
+
+.popupBox{
+  position: absolute;
+  top: 70%;
+  right: 0%;
+  z-index: 100;
+  padding: 1rem 2rem;
+  background-color: var(--surface);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.actionCell{
+  position: relative;
+}
+

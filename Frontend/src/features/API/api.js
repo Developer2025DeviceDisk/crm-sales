@@ -151,6 +151,7 @@ export const api = createApi({
         method: "POST"
       }),
     }),
+
     changePassword : builder.mutation({
       query: (data) => ({
         url: "/changePassword",
@@ -158,12 +159,20 @@ export const api = createApi({
         body : data
       })
     }),
+    
     getFunnelData: builder.query({
       query : () => ({
         url: "/getFunnelData"
       }),
       providesTags: ["Leads"]
     }),
+    updateLeadsDetail : builder.mutation({
+      query: (data)=> ({
+        body: data,
+        url: "/updateLeadDetails",
+        method: "PATCH"
+      })
+    })
 
   })
 });
@@ -190,6 +199,5 @@ export const {
   useForgetPasswordMutation,
   useGetChangePasswordTokenQuery,
   useGetFunnelDataQuery,
-  useEditLeadsMutation
- 
+  useUpdateLeadsDetailMutation 
 } = api;

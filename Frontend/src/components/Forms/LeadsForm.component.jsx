@@ -3,23 +3,24 @@ import { PlainInputField } from "../InputFields/PlainInputField.jsx";
 import { Dropdown } from "../InputFields/Dropdown.component.jsx";
 import { PhoneInputField } from "../InputFields/PhoneInputField.jsx";
 import { PrimaryButton } from "../Buttons/PrimaryButton.component.jsx";
+import { projectStatus } from "../../utils/projectStatus.js";
 import styles from "../Forms/Forms.component.module.css"
 
 
-export const LeadsForm = ({onChange, form, onSubmit, onClose}) => {
+export const LeadsForm = ({onChange, form, onSubmit, onClose, data}) => {
   return (
     <>
       <form
         method="post"
         className={styles.whiteBackground}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
       >
         <div className={styles.formText}>
-          <h1>New Lead</h1>
-          <CrossButton onClick={() => onClose()} />
+          <h1>Edit Lead</h1>
+          <CrossButton onClick={onClose} />
         </div>
         <PlainInputField
-          onChange={onChange}
+          
           type="text"
           placeholder="e.g Amazon"
           name="clientName"
