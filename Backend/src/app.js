@@ -24,6 +24,11 @@ app.use((req, res, next) => {
 });
 
 import { authRouter } from "./routes/auth.route.js";
+app.get("/ping", (req, res) => {
+  res.json({
+    message: "ping",
+  });
+});
 
 app.use("/api/v1", authRouter);
 
